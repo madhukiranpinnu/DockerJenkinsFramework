@@ -1,6 +1,7 @@
 package com.docker.pages.FlightRegistration;
 
 import com.docker.pages.BasePage;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,8 +27,8 @@ public class FlightSearchPage extends BasePage {
     private WebElement button_SearchResults;
     Select select=new Select(dropDown_Passengers);
     public void FlightSearch(String Passengers){
-        radioButton_OneWay.click();
-        select.deselectByValue(Passengers);
-        button_SearchResults.click();
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();",radioButton_OneWay);
+        select.selectByValue(Passengers);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();",button_SearchResults);
     }
 }

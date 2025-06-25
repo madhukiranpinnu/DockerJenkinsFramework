@@ -24,13 +24,10 @@ public class RegistrationPage extends BasePage {
     private WebElement textField_Street;
     @FindBy(name = "city")
     private WebElement textFeild_city;
-    @FindBy(id="inputState")
-    private WebElement dropDown_select;
     @FindBy(name = "zip")
     private WebElement textField_zip;
     @FindBy(id="register-btn")
     private WebElement button_register;
-    Select select=new Select(dropDown_select);
     public void nameDetails(String firstName,String lastName){
         textField_firstName.sendKeys(firstName);
         textField_LastName.sendKeys(lastName);
@@ -42,16 +39,19 @@ public class RegistrationPage extends BasePage {
     public void addAddress(String street,String city,String zip){
         textField_Street.sendKeys(street);
         textFeild_city.sendKeys(city);
-        select.selectByIndex(0);
         textField_zip.sendKeys(zip);
     }
     public void registerButton(){
         button_register.click();
     }
+    public void getURl(){
+        driver.get("https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/reservation-app/index.html");
+        driver.manage().window().maximize();
+    }
 
     @Override
     public boolean onPage() {
-        webDriverWait.until(ExpectedConditions.visibilityOf(textField_firstName));
-        return textField_firstName.isDisplayed();
+        webDriverWait.until(ExpectedConditions.visibilityOf(this.textField_firstName));
+        return this.textField_firstName.isDisplayed();
     }
 }
