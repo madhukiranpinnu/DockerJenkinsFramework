@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="kl">
+    <test name="sam">
+        <parameter name="vendorTestData" value="TestData/Data/Vemdorporta/sam.json"></parameter>
+        <classes>
+            <class name="Tests.VendorPortalTests.VendorPortalTest"></class>
+        </classes>
+    </test>
+    <test name="john">
+        <parameter name="vendorTestData" value="TestData/Data/Vemdorporta/john.json"></parameter>
+        <classes>
+            <class name="Tests.VendorPortalTests.VendorPortalTest"></class>
+        </classes>
+    </test>
+    <test name="mike">
+        <parameter name="vendorTestData" value="TestData/Data/Vemdorporta/mike.json"></parameter>
+        <classes>
+            <class name="Tests.VendorPortalTests.VendorPortalTest"></class>
+        </classes>
+    </test>
+</suite>

@@ -1,37 +1,29 @@
 package Tests.FlightRegistrationTests;
 
+import Tests.BaseTest;
+import Tests.FlightRegistrationTests.model.FlightBookingData;
 import com.docker.pages.FlightRegistration.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import util.JsonUtil;
 
-public class FlightBookingTest {
-    WebDriver driver;
-    String passanger;
-    String price;
+public class FlightBookingTest extends BaseTest {
+    FlightBookingData flightBooking;
     @BeforeTest
-    @Parameters({"passanger","price"})
-    public void BeforeTest(String passanger,String price){
-        this.passanger=passanger;
-        this.price=price;
-      driver=new ChromeDriver();
-    }
-    @AfterTest
-    public void AfterTest(){
-        driver.quit();
+    @Parameters({"flightBookingData"})
+    public void BeforeTests(String flightBookingData){
+     flightBooking= JsonUtil.getData(flightBookingData,FlightBookingData.class);
     }
     @Test
     public void Registration(){
         RegistrationPage registrationPage=new RegistrationPage(driver);
         registrationPage.getURl();
         Assert.assertTrue(registrationPage.onPage());
-        registrationPage.nameDetails("Madhu","kiran");
-        registrationPage.passwords("ghj@gmail.com","password");
-        registrationPage.addAddress("mk street","mk city","500032");
+        registrationPage.nameDetails(flightBooking.firstName(),flightBooking.lastName());
+        registrationPage.passwords(flightBooking.email(), flightBooking.password());
+        registrationPage.addAddress(flightBooking.street(), flightBooking.city(), flightBooking.zip());
         registrationPage.registerButton();
     }
     @Test(dependsOnMethods = "Registration")
@@ -44,7 +36,7 @@ public class FlightBookingTest {
     public void searchFlight(){
         FlightSearchPage flightSearchPage=new FlightSearchPage(driver);
         Assert.assertTrue(flightSearchPage.onPage());
-        flightSearchPage.FlightSearch(passanger);
+        flightSearchPage.FlightSearch(flightBooking.passengersCount());
     }
     @Test(dependsOnMethods = "searchFlight")
     public void selectFlights(){
@@ -56,6 +48,6 @@ public class FlightBookingTest {
     public void flightConfirmationPage(){
         FlightConfirmationPage flightConfirmationPage=new FlightConfirmationPage(driver);
         Assert.assertTrue(flightConfirmationPage.onPage());
-        Assert.assertEquals(flightConfirmationPage.FlightPrice(),price);
+        Assert.assertEquals(flightConfirmationPage.FlightPrice(),flightBooking.expectedPrice());
     }
 }

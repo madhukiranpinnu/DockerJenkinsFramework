@@ -2,29 +2,25 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="mk">
     <test name="one">
-        <parameter name="passanger" value="1"/>
-        <parameter name="price" value="$584 USD"/>
-        <classes>
+        <parameter name="flightBookingData" value="TestData/Data/FlightReservation/Passenger1.json"></parameter>
+     <classes>
             <class name="Tests.FlightRegistrationTests.FlightBookingTest"/>
         </classes>
     </test>
     <test name="two">
-        <parameter name="passanger" value="2"/>
-        <parameter name="price" value="$1169 USD"/>
+        <parameter name="flightBookingData" value="TestData/Data/FlightReservation/Passenger2.json"></parameter>
         <classes>
             <class name="Tests.FlightRegistrationTests.FlightBookingTest"/>
         </classes>
     </test>
     <test name="three">
-        <parameter name="passanger" value="3"/>
-        <parameter name="price" value="$1753 USD"/>
+        <parameter name="flightBookingData" value="TestData/Data/FlightReservation/Passenger3.json"></parameter>
         <classes>
             <class name="Tests.FlightRegistrationTests.FlightBookingTest"/>
         </classes>
     </test>
     <test name="four">
-        <parameter name="passanger" value="4"/>
-        <parameter name="price" value="$2338 USD"/>
+        <parameter name="flightBookingData" value="TestData/Data/FlightReservation/Passenger3.json"></parameter>
         <classes>
             <class name="Tests.FlightRegistrationTests.FlightBookingTest"/>
         </classes>
