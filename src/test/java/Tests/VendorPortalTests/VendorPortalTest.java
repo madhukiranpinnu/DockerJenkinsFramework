@@ -2,13 +2,15 @@ package Tests.VendorPortalTests;
 
 import Tests.BaseTest;
 import Tests.VendorPortalTests.model.VendorTestData;
+import Util.Config;
+import Util.Constants;
 import com.docker.pages.VendorPortal.DashBoardPage;
 import com.docker.pages.VendorPortal.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import util.JsonUtil;
+import Util.JsonUtil;
 
 public class VendorPortalTest extends BaseTest {
     LoginPage loginPage;
@@ -23,7 +25,7 @@ public class VendorPortalTest extends BaseTest {
     }
     @Test
     public void Login(){
-        loginPage.goTo();
+        loginPage.goTo(Config.getProperty(Constants.VENDOR_URL));
         Assert.assertTrue(loginPage.onPage());
         loginPage.Credentials(vendorTestData.username(), vendorTestData.password());
     }

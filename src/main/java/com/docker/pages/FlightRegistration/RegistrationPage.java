@@ -4,9 +4,8 @@ import com.docker.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
+
 
 public class RegistrationPage extends BasePage {
     public RegistrationPage(WebDriver driver){
@@ -44,8 +43,8 @@ public class RegistrationPage extends BasePage {
     public void registerButton(){
         button_register.click();
     }
-    public void getURl(){
-        driver.get("https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/reservation-app/index.html");
+    public void getURl(String url){
+        driver.get(url);
         driver.manage().window().maximize();
     }
 

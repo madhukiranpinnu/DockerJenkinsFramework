@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="kl">
+<suite name="kl" parallel="tests" thread-count="3">
     <test name="sam">
         <parameter name="vendorTestData" value="TestData/Data/Vemdorporta/sam.json"></parameter>
         <classes>

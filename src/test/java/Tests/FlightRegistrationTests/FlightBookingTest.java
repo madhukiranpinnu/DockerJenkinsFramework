@@ -2,12 +2,14 @@ package Tests.FlightRegistrationTests;
 
 import Tests.BaseTest;
 import Tests.FlightRegistrationTests.model.FlightBookingData;
+import Util.Config;
+import Util.Constants;
 import com.docker.pages.FlightRegistration.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import util.JsonUtil;
+import Util.JsonUtil;
 
 public class FlightBookingTest extends BaseTest {
     FlightBookingData flightBooking;
@@ -19,7 +21,7 @@ public class FlightBookingTest extends BaseTest {
     @Test
     public void Registration(){
         RegistrationPage registrationPage=new RegistrationPage(driver);
-        registrationPage.getURl();
+        registrationPage.getURl(Config.getProperty(Constants.FlightReservation_URL));
         Assert.assertTrue(registrationPage.onPage());
         registrationPage.nameDetails(flightBooking.firstName(),flightBooking.lastName());
         registrationPage.passwords(flightBooking.email(), flightBooking.password());

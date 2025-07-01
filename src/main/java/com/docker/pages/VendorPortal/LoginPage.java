@@ -22,8 +22,8 @@ public class LoginPage extends BasePage {
     private WebElement textField_Password;
     @FindBy(id="login")
     private WebElement btn_login;
-    public void goTo(){
-        driver.get("https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/vendor-app/index.html");
+    public void goTo(String url){
+        driver.get(url);
     }
     public void Credentials(String username,String password){
         textField_Password.sendKeys(password);
