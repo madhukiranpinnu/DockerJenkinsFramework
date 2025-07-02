@@ -1,5 +1,7 @@
 package Util;
 
+import org.openqa.selenium.WebDriver;
+
 public class Constants {
     public static final String GRID_URL="grid_URL";
     public static final String BROWSER="browser";
@@ -9,4 +11,5 @@ public class Constants {
     public static final String FlightReservation_URL="FlightReservationPort_URL";
     public static final String CHROME="chrome";
     public static final String FIREFOX ="firefox";
+    public static final String DRIVER="driver";
 }
