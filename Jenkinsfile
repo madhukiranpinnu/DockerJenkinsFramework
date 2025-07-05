@@ -22,6 +22,10 @@ pipeline{
                 bat "docker push 7013918149/selenium"
             }
         }
-
+    }
+    post {
+        always {
+            sh 'docker logout'
+        }
     }
 }
