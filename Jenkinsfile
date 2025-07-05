@@ -1,33 +1,31 @@
 pipeline{
 	agent any
     stages{
-		stage('Build Jar') {
-			agent {
-				docker {
-					image 'maven:3.9.3-eclipse-temurin-17-focal'
-                    args '-u root -v /tmp/m2:/root/.m2'
-                }
-            }
-            steps {
-				sh 'mvn clean package -DskipTests'
+		stage("Build jar"){
+			steps{
+				bat "mvn clean package -DskipTests"
             }
         }
-        stage("Building the image"){
+        stage("Build image"){
 			steps{
-				script{
-					app=docker.build("7013918149/selenium")
-                    }
+				bat "docker build -t7013918149/selenium ."
             }
         }
-        stage("Pushing the image"){
-			steps{
-				script{
-					//To push with credentials
-            //First parameter space because not necessary in local
-            docker.withRegistry('','dockerhub-cred')
-            app.push("latest")
-             }
+
+        stage("push image"){
+			environment{
+				// assuming you have stored the credentials with this name
+                DOCKER_HUB = credentials('dockerhub-cred')
             }
+            steps{
+				bat 'docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%'
+                bat "docker push 7013918149/selenium"
+            }
+        }
+    }
+    post {
+		always {
+			bat 'docker logout'
         }
     }
 }
